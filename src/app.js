@@ -2,11 +2,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import reportRoutes from "./routes/report.js";
-
+import userRoutes from "./routes/users.js";
+import cors from 'cors';
 dotenv.config();
+
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Add CORS middleware
 app.use((req, res, next) => {
@@ -19,6 +22,7 @@ app.use((req, res, next) => {
 
 // API Routes
 app.use("/api", reportRoutes);
+app.use("/api/users",userRoutes);
 
 
 app.get("/", (req, res) => {
